@@ -10,11 +10,4 @@ import hashlib
 class MinifiedUrl:
     original_url: str
     minified_slug: str
-    expiration_time: datetime.datetime
-
-    def is_expired(self) -> bool:
-        now = datetime.datetime.now(datetime.UTC)
-        print("Now: ", now)
-        print("Expiration Time: ", self.expiration_time)
-        return now >= self.expiration_time
-
+    submission_time: datetime.datetime

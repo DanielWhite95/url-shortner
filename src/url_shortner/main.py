@@ -38,12 +38,6 @@ async def expand_url(url_to_expand: str, db: MongoStore):
         print("Url not found!")
         return
 
-    if orig_url.is_expired():
-        print("Url expired! Will be deleted. Please create it again")
-        await db.delete(orig_url)
-        return
-
-
     print("Expanded url: ")
     print(f"https://{settings.app_domain}/{orig_url.minified_slug}")
 

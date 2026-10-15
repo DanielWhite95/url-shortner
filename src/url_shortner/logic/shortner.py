@@ -34,7 +34,7 @@ class UrlShortner:
                 minified_url = MinifiedUrl(
                     original_url=url,
                     minified_slug=short_code,
-                    expiration_time=now + self._exp_time
+                    submission_time=now
     )
                 await self._url_store.store(minified_url)
                 return minified_url  # Return the generated short URL
