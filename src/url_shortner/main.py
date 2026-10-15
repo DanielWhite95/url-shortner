@@ -39,7 +39,7 @@ async def expand_url(url_to_expand: str, db: MongoStore):
         return
 
     print("Expanded url: ")
-    print(f"https://{settings.app_domain}/{orig_url.minified_slug}")
+    print(f"{orig_url.original_url}")
 
 async def minify_url(url_to_minify: str, db: MongoStore):
     url_shortner = UrlShortner(db, settings.url_exp_time)
@@ -62,6 +62,7 @@ async def main():
         print("Only one between minify and expand parameters can be specified")
         sys.exit(1)
     async with MongoStore(settings.mongo_uri) as db:
+        await db.connect(settings.mongo_uri)
         if url_to_expand is not None:
             await expand_url(url_to_expand, db)
         else:
